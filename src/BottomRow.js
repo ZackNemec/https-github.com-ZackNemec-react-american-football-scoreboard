@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 const BottomRow = () => {
+  const [quarter, quarterNum] = useState(0);
+
+  let quarterArray = ["1st", "2nd", "3rd", "4th", "Game Over"];
+
+  const quarterChange = (quarterArray) => {
+    if (quarter <= 3) {
+      quarterNum(quarter + 1);
+    } else quarterNum(5);
+    if (quarter == 5) {
+      quarterNum((quarterArray = 0));
+    }
+  };
+
   return (
     <div className="bottomRow">
       <div className="down">
@@ -18,7 +31,9 @@ const BottomRow = () => {
       </div>
       <div className="quarter">
         <h3 className="quarter__title">Quarter</h3>
-        <div className="quarter__value">4</div>
+        <button className="quarter__value" onClick={quarterChange}>
+          {quarterArray[quarter]}
+        </button>
       </div>
     </div>
   );
